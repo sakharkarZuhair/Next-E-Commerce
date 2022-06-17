@@ -13,16 +13,16 @@ const NavBar = () => {
           </a>
         </Link>
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          <Link href="/">
-            <a className="mr-5 hover:text-gray-900">Nimbus</a>
+          <Link href="/firebolt">
+            <a className="mr-5 hover:text-gray-900">The Firebolt</a>
           </Link>
-          <Link href="/">
+          <Link href="/wands">
             <a className="mr-5 hover:text-gray-900">Wands</a>
           </Link>
-          <Link href="/">
+          <Link href="/invisibilitycloaks">
             <a className="mr-5 hover:text-gray-900">Invisibility cloaks</a>
           </Link>
-          <Link href="/">
+          <Link href="/maps">
             <a className="mr-5 hover:text-gray-900">The Marauder's Map</a>
           </Link>
         </nav>
