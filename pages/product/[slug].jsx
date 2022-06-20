@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-const Slug = () => {
+const Slug = ({ addToCart }) => {
   const router = useRouter();
   const [pin, setPin] = useState();
   const [service, setService] = useState();
@@ -183,7 +183,12 @@ const Slug = () => {
                 <button className="flex ml-8 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-sm">
                   Buy Now
                 </button>
-                <button className="flex ml-5 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-sm">
+                <button
+                  onClick={() => {
+                    addToCart(slug, 1, 499, "Wear the Cloth", "XL", "Red");
+                  }}
+                  className="flex ml-5 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-sm"
+                >
                   Add to cart
                 </button>
                 <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
