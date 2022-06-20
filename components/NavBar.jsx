@@ -86,7 +86,9 @@ function NavBar() {
             <div className="item flex my-3">
               <div className="w-2/3 font-semibold">Order</div>
               <div className="flex items-center font-semibold justify-center w-1/3">
-                1
+                <AiFillMinusCircle className="text-xl cursor-pointer" />
+                <span className="mx-1 text-xl">1</span>
+                <AiFillPlusCircle className="text-xl cursor-pointer" />
               </div>
             </div>
           </li>
@@ -94,7 +96,9 @@ function NavBar() {
             <div className="item flex my-3">
               <div className="w-2/3 font-semibold">Order</div>
               <div className="flex items-center font-semibold justify-center w-1/3">
-                1
+                <AiFillMinusCircle className="text-xl cursor-pointer" />
+                <span className="mx-1 text-xl">1</span>
+                <AiFillPlusCircle className="text-xl cursor-pointer" />
               </div>
             </div>
           </li>
@@ -102,15 +106,22 @@ function NavBar() {
             <div className="item flex my-3">
               <div className="w-2/3 font-semibold">Order</div>
               <div className="flex items-center font-semibold justify-center w-1/3">
-                1
+                <AiFillMinusCircle className="text-xl cursor-pointer" />
+                <span className="mx-1 text-xl">1</span>
+                <AiFillPlusCircle className="text-xl cursor-pointer" />
               </div>
             </div>
           </li>
         </ol>
-        <button class="flex mx-auto mt-16 text-white bg-slate-500 border-0 py-2 px-8 focus:outline-none hover:bg-slate-700 rounded text-lg">
-          <BsFillBagCheckFill className="m-1" />
-          Checkout
-        </button>
+        <div className="flex">
+          <button class="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm">
+            <BsFillBagCheckFill className="m-1" />
+            Checkout
+          </button>
+          <button class="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm">
+            Clear Cart
+          </button>
+        </div>
       </div>
     </div>
   );
