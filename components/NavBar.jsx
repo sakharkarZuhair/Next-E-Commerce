@@ -117,12 +117,15 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
               </li>
             );
           })}
+          <span className="font-bold">SubTotal: ${subTotal}</span>
         </ol>
         <div className="flex">
-          <button class="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm">
-            <BsFillBagCheckFill className="m-1" />
-            Checkout
-          </button>
+          <Link href={"/checkout"}>
+            <button class="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm">
+              <BsFillBagCheckFill className="m-1" />
+              Checkout
+            </button>
+          </Link>
           <button
             onClick={clearCart}
             class="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm"
