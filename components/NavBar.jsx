@@ -8,6 +8,7 @@ import {
   AiFillMinusCircle,
 } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
 
 function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
   // console.log(cart);
@@ -52,6 +53,12 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
             </a>
           </Link>
           <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+            <Link href="/login">
+              <button className="inline-flex mr-4 items-center bg-gray-100 border-0 py-1 px-4 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+                Profile
+                <CgProfile style={{ marginLeft: "8px" }} />
+              </button>
+            </Link>
             <button
               onClick={toggleCart}
               className="inline-flex items-center bg-gray-100 border-0 py-1 px-4 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
