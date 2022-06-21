@@ -30,10 +30,8 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
       <header className="text-gray-600 body-font">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto font-bold">
-            <Link href={"/firebolt"}>
-              <a className="mr-5 hover:text-gray-900 cursor-pointer">
-                The Firebolt
-              </a>
+            <Link href={"/novels"}>
+              <a className="mr-5 hover:text-gray-900 cursor-pointer">Novels</a>
             </Link>
             <Link href={"/wands"}>
               <a className="mr-5 hover:text-gray-900 cursor-pointer">Wands</a>
@@ -128,14 +126,14 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
         </ol>
         <div className="flex">
           <Link href={"/checkout"}>
-            <button class="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm">
+            <button className="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm">
               <BsFillBagCheckFill className="m-1" />
               Checkout
             </button>
           </Link>
           <button
             onClick={clearCart}
-            class="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm"
+            className="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm"
           >
             Clear Cart
           </button>

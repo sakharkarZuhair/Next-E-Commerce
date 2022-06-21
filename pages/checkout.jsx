@@ -11,7 +11,7 @@ const Checkout = ({ cart, subTotal, addToCart, removeFromCart }) => {
       <div className="mx-auto flex">
         <div className="px-2 w-1/2">
           <div className="mb-4">
-            <label htmlFor="name" class="leading-7 text-sm text-gray-600">
+            <label htmlFor="name" className="leading-7 text-sm text-gray-600">
               Name
             </label>
             <input
@@ -24,7 +24,7 @@ const Checkout = ({ cart, subTotal, addToCart, removeFromCart }) => {
         </div>
         <div className="px-2 w-1/2">
           <div className="mb-4">
-            <label for="email" class="leading-7 text-sm text-gray-600">
+            <label for="email" className="leading-7 text-sm text-gray-600">
               Email
             </label>
             <input
@@ -38,7 +38,7 @@ const Checkout = ({ cart, subTotal, addToCart, removeFromCart }) => {
       </div>
       <div className="px-2 w-full">
         <div className="mb-4">
-          <label htmlFor="address" class="leading-7 text-sm text-gray-600">
+          <label htmlFor="address" className="leading-7 text-sm text-gray-600">
             Address
           </label>
           <textarea
@@ -53,7 +53,7 @@ const Checkout = ({ cart, subTotal, addToCart, removeFromCart }) => {
       <div className="mx-auto flex">
         <div className="px-2 w-1/2">
           <div className="mb-4">
-            <label htmlFor="phone" class="leading-7 text-sm text-gray-600">
+            <label htmlFor="phone" className="leading-7 text-sm text-gray-600">
               Phone
             </label>
             <input
@@ -66,7 +66,7 @@ const Checkout = ({ cart, subTotal, addToCart, removeFromCart }) => {
         </div>
         <div className="px-2 w-1/2">
           <div className="mb-4">
-            <label for="city" class="leading-7 text-sm text-gray-600">
+            <label for="city" className="leading-7 text-sm text-gray-600">
               City
             </label>
             <input
@@ -79,7 +79,7 @@ const Checkout = ({ cart, subTotal, addToCart, removeFromCart }) => {
         </div>
         <div className="px-2 w-1/2">
           <div className="mb-4">
-            <label for="state" class="leading-7 text-sm text-gray-600">
+            <label for="state" className="leading-7 text-sm text-gray-600">
               State
             </label>
             <input
@@ -92,7 +92,7 @@ const Checkout = ({ cart, subTotal, addToCart, removeFromCart }) => {
         </div>
         <div className="px-2 w-1/2">
           <div className="mb-4">
-            <label for="pincode" class="leading-7 text-sm text-gray-600">
+            <label for="pincode" className="leading-7 text-sm text-gray-600">
               Pincode
             </label>
             <input
@@ -155,7 +155,7 @@ const Checkout = ({ cart, subTotal, addToCart, removeFromCart }) => {
       </div>
       <div className="my-4">
         <Link href={"/checkout"}>
-          <button class="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm">
+          <button className="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm">
             Pay ${subTotal}
           </button>
         </Link>
