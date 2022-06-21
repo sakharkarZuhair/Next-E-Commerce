@@ -10,9 +10,12 @@ const Notebook = ({ products }) => {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex justify-center flex-wrap -m-4">
-            {products.map((item) => {
+            {Object.keys(products).map((item) => {
               return (
-                <Link key={item._id} href={`/product/${item.slug}`}>
+                <Link
+                  key={products[item]._id}
+                  href={`/product/${products[item].slug}`}
+                >
                   <div
                     className="lg:w-1/4 md:w-1/2 p-4 w-full border m-4 shadow-md"
                     style={{ cursor: "pointer" }}
@@ -21,17 +24,45 @@ const Notebook = ({ products }) => {
                       <img
                         alt="ecommerce"
                         className="object-cover object-center w-full h-[50vh] block"
-                        src={item.img}
+                        src={products[item].img}
                       />
                     </a>
                     <div className="mt-4">
                       <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                        {item.title}
+                        {products[item].title}
                       </h3>
                       <h2 className="text-gray-900 title-font text-lg font-medium">
-                        {item.desc}
+                        {products[item].desc}
                       </h2>
-                      <p className="mt-1">₹{item.price}</p>
+                      <p className="mt-1">₹{products[item].price}</p>
+                      <div className="mt-1">
+                        {products[item].size.includes("small") && (
+                          <span className="px-1 mx-1 bg-indigo-300 text-white">
+                            Small
+                          </span>
+                        )}
+                        {products[item].size.includes("medium") && (
+                          <span className="px-1 mx-1 bg-indigo-300 text-white">
+                            Medium
+                          </span>
+                        )}
+                        {products[item].size.includes("large") && (
+                          <span className="px-1 mx-1 bg-indigo-300 text-white">
+                            Large
+                          </span>
+                        )}
+                      </div>
+                      <div className="mt-1">
+                        {products[item].color.includes("orange") && (
+                          <button className="bg-orange-400 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                        )}
+                        {products[item].color.includes("orange") && (
+                          <button className="bg-yellow-900 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                        )}
+                        {products[item].color.includes("orange") && (
+                          <button className="bg-blue-500 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -49,8 +80,32 @@ export async function getServerSideProps(context) {
     await mongoose.connect(process.env.MONGO_URI);
   }
   let products = await Product.find();
+  let novels = {};
+
+  for (let item of products) {
+    if (item.title in novels) {
+      if (
+        !novels[item.title].color.includes(item.color) &&
+        item.availableQty > 0
+      ) {
+        novels[item.title].color.push(item.color);
+      }
+      if (
+        !novels[item.title].size.includes(item.size) &&
+        item.availableQty > 0
+      ) {
+        novels[item.title].size.push(item.size);
+      }
+    } else {
+      novels[item.title] = JSON.parse(JSON.stringify(item));
+      if (item.availableQty > 0) {
+        novels[item.title].color = [item.color];
+        novels[item.title].size = [item.size];
+      }
+    }
+  }
   return {
-    props: { products: JSON.parse(JSON.stringify(products)) },
+    props: { products: JSON.parse(JSON.stringify(novels)) },
   };
 }
 
