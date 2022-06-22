@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Product from "../../models/Product";
 import mongoose from "mongoose";
 
-const Slug = ({ addToCart, product, variants }) => {
+const Slug = ({ buyNow, addToCart, product, variants }) => {
   console.log(product, variants);
   const router = useRouter();
   const [pin, setPin] = useState();
@@ -17,8 +19,26 @@ const Slug = ({ addToCart, product, variants }) => {
     let pinsJson = await (await pins).json();
     if (pinsJson.includes(parseInt(pin))) {
       setService(true);
+      toast.success("Delivery Available!", {
+        position: "bottom-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       setService(false);
+      toast.error("Sorry! We don't deliver here.", {
+        position: "bottom-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -34,6 +54,17 @@ const Slug = ({ addToCart, product, variants }) => {
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
@@ -234,7 +265,12 @@ const Slug = ({ addToCart, product, variants }) => {
                 <span className="title-font font-medium text-2xl text-gray-900">
                   ₹{product.price}
                 </span>
-                <button className="flex ml-8 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-sm">
+                <button
+                  onClick={() => {
+                    buyNow(slug, 1, 499, product.title, size, color);
+                  }}
+                  className="flex ml-8 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-sm"
+                >
                   Buy Now
                 </button>
                 <button

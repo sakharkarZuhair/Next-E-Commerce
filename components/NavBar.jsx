@@ -69,7 +69,7 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
       </header>
       <div
         ref={ref}
-        className="w-72 h-full z-10 sideCart absolute bg-zinc-100 top-0 right-0 px-8 py-10 transform transition-transform translate-x-full"
+        className="w-72 h-full z-10 sideCart overflow-y-scroll absolute bg-zinc-100 top-0 right-0 px-8 py-10 transform transition-transform translate-x-full"
       >
         <h2 className="font-bold text-2xl text-center ">Shopping Cart</h2>
         <span
