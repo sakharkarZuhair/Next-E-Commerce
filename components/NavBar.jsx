@@ -88,7 +88,9 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
             return (
               <li key={k}>
                 <div className="item flex my-3">
-                  <div className="w-2/3 font-semibold">{cart[k].name}</div>
+                  <div className="w-2/3 font-semibold">
+                    {cart[k].name} ({cart[k].size}/{cart[k].variant})
+                  </div>
                   <div className="flex items-center font-semibold justify-center w-1/3">
                     <AiFillMinusCircle
                       onClick={() => {
@@ -122,9 +124,9 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
               </li>
             );
           })}
-          <span className="font-bold">SubTotal: ${subTotal}</span>
+          <span className="font-bold">SubTotal: ₹{subTotal}</span>
         </ol>
-        <div className="flex">
+        <div className="flex my-2">
           <Link href={"/checkout"}>
             <button className="flex mr-2 text-white bg-slate-500 border-0 py-2 px-3 focus:outline-none hover:bg-slate-700 rounded text-sm">
               <BsFillBagCheckFill className="m-1" />
