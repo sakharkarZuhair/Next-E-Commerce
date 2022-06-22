@@ -1,9 +1,67 @@
-import React from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
+  const [name, setName] = useState();
+  const [number, setNumber] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const handleChange = (e) => {
+    if (e.target.name == "name") {
+      setName(e.target.value);
+    } else if (e.target.name == "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name == "number") {
+      setNumber(e.target.value);
+    } else if (e.target.name == "password") {
+      setPassword(e.target.value);
+    }
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const data = { name, number, email, password };
+    console.log(data);
+    let res = await fetch("http://localhost:3000/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    let response = await res.json();
+    console.log(response);
+    setName("");
+    setNumber("");
+    setEmail("");
+    setPassword("");
+    toast.success("🦄Your Account has been Created!", {
+      position: "bottom-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="max-w-md w-full space-y-8">
         <div>
           <img
@@ -25,49 +83,73 @@ const SignUp = () => {
             </Link>
           </p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form onSubmit={submitHandler} className="mt-8 space-y-6" method="POST">
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label for="name" className="sr-only">
-                Name
+            <div className="">
+              <div className="relative">
+                <label
+                  htmlFor="name"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  Name
+                </label>
+                <input
+                  value={name}
+                  onChange={handleChange}
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+              </div>
+            </div>
+            <div className="relative">
+              <label
+                htmlFor="number"
+                className="leading-7 text-sm text-gray-600"
+              >
+                number
               </label>
               <input
-                id="name"
-                name="name"
-                type="text"
-                autocomplete="name"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Name"
+                value={number}
+                onChange={handleChange}
+                type="number"
+                id="number"
+                name="number"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
-            <div>
-              <label for="email-address" className="sr-only">
-                Email address
+            <div className="relative">
+              <label
+                htmlFor="email"
+                className="leading-7 text-sm text-gray-600"
+              >
+                Email
               </label>
               <input
-                id="email-address"
-                name="email"
+                value={email}
+                onChange={handleChange}
                 type="email"
-                autocomplete="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                id="email"
+                name="email"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
-            <div>
-              <label for="password" className="sr-only">
+            <div className="relative">
+              <label
+                htmlFor="password"
+                className="leading-7 text-sm text-gray-600"
+              >
                 Password
               </label>
               <input
+                value={password}
+                onChange={handleChange}
+                type="password"
                 id="password"
                 name="password"
-                type="password"
-                autocomplete="current-password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
           </div>
