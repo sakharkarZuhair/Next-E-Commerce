@@ -56,10 +56,10 @@ const Notebook = ({ products }) => {
                         {products[item].color.includes("orange") && (
                           <button className="bg-orange-400 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
                         )}
-                        {products[item].color.includes("orange") && (
+                        {products[item].color.includes("brown") && (
                           <button className="bg-yellow-900 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
                         )}
-                        {products[item].color.includes("orange") && (
+                        {products[item].color.includes("blue") && (
                           <button className="bg-blue-500 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
                         )}
                       </div>
@@ -79,7 +79,7 @@ export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URI);
   }
-  let products = await Product.find();
+  let products = await Product.find({ category: "notebook" });
   let novels = {};
 
   for (let item of products) {

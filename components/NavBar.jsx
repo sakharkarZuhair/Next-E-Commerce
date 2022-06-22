@@ -33,13 +33,13 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
             <Link href={"/novels"}>
               <a className="mr-5 hover:text-gray-900 cursor-pointer">Novels</a>
             </Link>
-            <Link href={"/wands"}>
-              <a className="mr-5 hover:text-gray-900 cursor-pointer">Wands</a>
-            </Link>
-            <Link href={"/invisibilitycloaks"}>
+            <Link href={"/actionfigure"}>
               <a className="mr-5 hover:text-gray-900 cursor-pointer">
-                Invisibility Cloak
+                Action Figure
               </a>
+            </Link>
+            <Link href={"/lockets"}>
+              <a className="mr-5 hover:text-gray-900 cursor-pointer">Lockets</a>
             </Link>
             <Link href={"/maps"}>
               <a className="hover:text-gray-900 cursor-pointer">Maps</a>
