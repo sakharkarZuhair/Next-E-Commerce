@@ -35,34 +35,6 @@ const Notebook = ({ products }) => {
                         {products[item].desc}
                       </h2>
                       <p className="mt-1">₹{products[item].price}</p>
-                      <div className="mt-1">
-                        {products[item].size.includes("small") && (
-                          <span className="px-1 mx-1 bg-indigo-300 text-white">
-                            Small
-                          </span>
-                        )}
-                        {products[item].size.includes("medium") && (
-                          <span className="px-1 mx-1 bg-indigo-300 text-white">
-                            Medium
-                          </span>
-                        )}
-                        {products[item].size.includes("large") && (
-                          <span className="px-1 mx-1 bg-indigo-300 text-white">
-                            Large
-                          </span>
-                        )}
-                      </div>
-                      <div className="mt-1">
-                        {products[item].color.includes("orange") && (
-                          <button className="bg-orange-400 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
-                        )}
-                        {products[item].color.includes("brown") && (
-                          <button className="bg-yellow-900 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
-                        )}
-                        {products[item].color.includes("blue") && (
-                          <button className="bg-blue-500 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
-                        )}
-                      </div>
                     </div>
                   </div>
                 </Link>

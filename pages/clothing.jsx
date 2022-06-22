@@ -3,7 +3,7 @@ import Link from "next/link";
 import mongoose from "mongoose";
 import Product from "../models/Product";
 
-const Locket = ({ products }) => {
+const Clothing = ({ products }) => {
   // console.log(products);
   return (
     <div>
@@ -53,14 +53,14 @@ const Locket = ({ products }) => {
                         )}
                       </div>
                       <div className="mt-1">
-                        {products[item].color.includes("orange") && (
-                          <button className="bg-orange-400 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                        {products[item].color.includes("white") && (
+                          <button className="bg-white border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
                         )}
-                        {products[item].color.includes("brown") && (
-                          <button className="bg-yellow-900 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                        {products[item].color.includes("green") && (
+                          <button className="bg-green-900 border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
                         )}
-                        {products[item].color.includes("blue") && (
-                          <button className="bg-blue-500 rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                        {products[item].color.includes("pink") && (
+                          <button className="bg-pink-500 border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
                         )}
                       </div>
                     </div>
@@ -79,34 +79,34 @@ export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URI);
   }
-  let products = await Product.find({ category: "locket" });
-  let locekts = {};
+  let products = await Product.find({ category: "cloth" });
+  let cloths = {};
 
   for (let item of products) {
-    if (item.title in locekts) {
+    if (item.title in cloths) {
       if (
-        !locekts[item.title].color.includes(item.color) &&
+        !cloths[item.title].color.includes(item.color) &&
         item.availableQty > 0
       ) {
-        locekts[item.title].color.push(item.color);
+        cloths[item.title].color.push(item.color);
       }
       if (
-        !locekts[item.title].size.includes(item.size) &&
+        !cloths[item.title].size.includes(item.size) &&
         item.availableQty > 0
       ) {
-        locekts[item.title].size.push(item.size);
+        cloths[item.title].size.push(item.size);
       }
     } else {
-      locekts[item.title] = JSON.parse(JSON.stringify(item));
+      cloths[item.title] = JSON.parse(JSON.stringify(item));
       if (item.availableQty > 0) {
-        locekts[item.title].color = [item.color];
-        locekts[item.title].size = [item.size];
+        cloths[item.title].color = [item.color];
+        cloths[item.title].size = [item.size];
       }
     }
   }
   return {
-    props: { products: JSON.parse(JSON.stringify(locekts)) },
+    props: { products: JSON.parse(JSON.stringify(cloths)) },
   };
 }
 
-export default Locket;
+export default Clothing;

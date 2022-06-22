@@ -41,8 +41,8 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
             <Link href={"/lockets"}>
               <a className="mr-5 hover:text-gray-900 cursor-pointer">Lockets</a>
             </Link>
-            <Link href={"/maps"}>
-              <a className="hover:text-gray-900 cursor-pointer">Maps</a>
+            <Link href={"/clothing"}>
+              <a className="hover:text-gray-900 cursor-pointer">Clothing</a>
             </Link>
           </nav>
           <Link href={"/"}>
@@ -89,7 +89,14 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
               <li key={k}>
                 <div className="item flex my-3">
                   <div className="w-2/3 font-semibold">
-                    {cart[k].name} ({cart[k].size}/{cart[k].variant})
+                    {cart[k].name}{" "}
+                    {cart[k].size === "none" && cart[k].variant === "none" ? (
+                      ""
+                    ) : (
+                      <span>
+                        ({cart[k].size}/{cart[k].variant})
+                      </span>
+                    )}
                   </div>
                   <div className="flex items-center font-semibold justify-center w-1/3">
                     <AiFillMinusCircle
