@@ -33,6 +33,8 @@ const Login = () => {
     console.log(response);
     setEmail("");
     setPassword("");
+    localStorage.setItem("token", response.token);
+    // console.log(response.success);
     if (response.success) {
       toast.success("🦄Successful Logged In!", {
         position: "bottom-center",
