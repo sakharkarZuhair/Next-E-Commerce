@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
@@ -10,8 +10,18 @@ import {
 import { BsFillBagCheckFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 
-function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
+function NavBar({
+  logout,
+  user,
+  cart,
+  addToCart,
+  removeFromCart,
+  clearCart,
+  subTotal,
+}) {
   // console.log(cart);
+
+  const [dropdown, setDropdown] = useState(false);
 
   const toggleCart = () => {
     if (ref.current.classList.contains("translate-x-full")) {
@@ -50,13 +60,59 @@ function NavBar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
               <Image src={"/logo.png"} alt={"Logo"} height={120} width={120} />
             </a>
           </Link>
-          <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
-            <Link href="/login">
-              <button className="inline-flex mr-4 items-center bg-gray-100 border-0 py-1 px-4 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-                Profile
-                <CgProfile style={{ marginLeft: "8px" }} />
+          <div
+            className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0"
+            onMouseOver={() => {
+              setDropdown(true);
+            }}
+            onMouseLeave={() => {
+              setDropdown(false);
+            }}
+          >
+            {dropdown && (
+              <div className="absolute mr-24 mt-10 rounded-md px-4 py-4 bg-slate-400 text-white">
+                <ul>
+                  <Link href={"/myaccount"}>
+                    <li className="py-1 text-sm hover:text-gray-300 cursor-pointer">
+                      My Account
+                    </li>
+                  </Link>
+                  <Link href={"/orders"}>
+                    <li className="py-1 text-sm hover:text-gray-300 cursor-pointer">
+                      Orders
+                    </li>
+                  </Link>
+
+                  <li
+                    onClick={logout}
+                    className="py-1 text-sm hover:text-gray-300 cursor-pointer"
+                  >
+                    Logout
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {user.value && (
+              <button className="p-5">
+                <CgProfile
+                  style={{
+                    height: "20px",
+                    width: "20px",
+                    marginRight: "20px",
+                  }}
+                />
               </button>
-            </Link>
+            )}
+            {!user.value && (
+              <div>
+                <Link href="/login">
+                  <button className="inline-flex mr-4 items-center bg-gray-100 border-0 py-1 px-4 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+                    Login
+                  </button>
+                </Link>
+              </div>
+            )}
             <button
               onClick={toggleCart}
               className="inline-flex items-center bg-gray-100 border-0 py-1 px-4 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
