@@ -1,9 +1,77 @@
 import Link from "next/link";
-import React from "react";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+  const router = useRouter();
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const handleChange = (e) => {
+    if (e.target.name == "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name == "password") {
+      setPassword(e.target.value);
+    }
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const data = { email, password };
+    console.log(data);
+    let res = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    let response = await res.json();
+    console.log(response);
+    setEmail("");
+    setPassword("");
+    if (response.success) {
+      toast.success("🦄Successful Logged In!", {
+        position: "bottom-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
+    } else {
+      toast.error("Please Enter Valid Details!", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="max-w-md w-full space-y-8">
         <div>
           <img
@@ -25,7 +93,12 @@ const Login = () => {
             </Link>
           </p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form
+          onSubmit={submitHandler}
+          className="mt-8 space-y-6"
+          action="#"
+          method="POST"
+        >
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -33,7 +106,9 @@ const Login = () => {
                 Email address
               </label>
               <input
-                id="email-address"
+                value={email}
+                onChange={handleChange}
+                id="email"
                 name="email"
                 type="email"
                 autocomplete="email"
@@ -47,6 +122,8 @@ const Login = () => {
                 Password
               </label>
               <input
+                value={password}
+                onChange={handleChange}
                 id="password"
                 name="password"
                 type="password"
@@ -107,7 +184,7 @@ const Login = () => {
                   />
                 </svg>
               </span>
-              Sign in
+              Login
             </button>
           </div>
         </form>

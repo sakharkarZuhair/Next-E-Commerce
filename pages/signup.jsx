@@ -1,9 +1,12 @@
 import { useState } from "react";
-import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
+  const router = useRouter();
+
   const [name, setName] = useState();
   const [number, setNumber] = useState();
   const [email, setEmail] = useState();
@@ -38,6 +41,7 @@ const SignUp = () => {
     setNumber("");
     setEmail("");
     setPassword("");
+    router.push("/");
     toast.success("🦄Your Account has been Created!", {
       position: "bottom-center",
       autoClose: 1000,
@@ -109,7 +113,7 @@ const SignUp = () => {
                 htmlFor="number"
                 className="leading-7 text-sm text-gray-600"
               >
-                number
+                Number
               </label>
               <input
                 value={number}
