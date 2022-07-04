@@ -85,11 +85,10 @@ export default function Home() {
                   PotterCast: The Harry Potter Podcast(since 2005)
                 </h2>
                 <p className="leading-relaxed text-base mb-4">
-                  Join PotterCast in a continuing adventure through J.K.Rowling
-                  's Wizarding World. For eleven years PotterCast has remained
-                  your trusted source for discussion, celebration, and
-                  interviews with creators and actors from the Harry Potter
-                  Universe.
+                  Join PotterCast in a continuing adventure through J.K.Rowlings
+                  Wizarding World. For eleven years PotterCast has remained your
+                  trusted source for discussion, celebration, and interviews
+                  with creators and actors from the Harry Potter Universe.
                 </p>
                 <a className="text-indigo-500 inline-flex items-center">
                   Learn More

@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-const connectDb = (handler) => async(req, res) => {
-    if (mongoose.connections[0].readyState) {
-        return handler(req, res);
-    }
-    await mongoose.connect(process.env.MONGO_URI);
+const connectDb = (handler) => async (req, res) => {
+  if (mongoose.connections[0].readyState) {
     return handler(req, res);
+  }
+  await mongoose.connect("mongodb://0.0.0.0:27017/clothWeb");
+  return handler(req, res);
 };
 
 export default connectDb;
