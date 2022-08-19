@@ -35,12 +35,12 @@ const Login = () => {
       },
       body: JSON.stringify(data),
     });
+    // console.log(response);
     let response = await res.json();
-    console.log(response);
+    localStorage.setItem("token", response.token);
     setEmail("");
     setPassword("");
-    localStorage.setItem("token", response.token);
-    // console.log(response.success);
+    // console.log(response.token);
     if (response.success) {
       toast.success("🦄Successful Logged In!", {
         position: "bottom-center",
