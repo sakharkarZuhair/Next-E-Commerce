@@ -11,6 +11,7 @@ const Clothing = ({ products }) => {
         <div className="container px-5 py-24 mx-auto">
           <div className="flex justify-center flex-wrap -m-4">
             {Object.keys(products).map((item) => {
+              console.log(products[item]);
               return (
                 <Link
                   key={products[item]._id}
@@ -36,31 +37,39 @@ const Clothing = ({ products }) => {
                       </h2>
                       <p className="mt-1">₹{products[item].price}</p>
                       <div className="mt-1">
-                        {products[item].size.includes("small") && (
+                        {products[item].size.includes("S") && (
                           <span className="px-1 mx-1 bg-indigo-300 text-white">
-                            Small
+                            S
                           </span>
                         )}
-                        {products[item].size.includes("medium") && (
+                        {products[item].size.includes("M") && (
                           <span className="px-1 mx-1 bg-indigo-300 text-white">
-                            Medium
+                            M
                           </span>
                         )}
-                        {products[item].size.includes("large") && (
+                        {products[item].size.includes("L") && (
                           <span className="px-1 mx-1 bg-indigo-300 text-white">
-                            Large
+                            L
+                          </span>
+                        )}
+                        {products[item].size.includes("XL") && (
+                          <span className="px-1 mx-1 bg-indigo-300 text-white">
+                            XL
                           </span>
                         )}
                       </div>
                       <div className="mt-1">
+                        {products[item].color.includes("black") && (
+                          <button className="bg-black border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                        )}
                         {products[item].color.includes("white") && (
-                          <button className="bg-white border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                          <button className="bg-white-900 border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
                         )}
-                        {products[item].color.includes("green") && (
-                          <button className="bg-green-900 border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                        {products[item].color.includes("blue") && (
+                          <button className="bg-blue-500 border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
                         )}
-                        {products[item].color.includes("pink") && (
-                          <button className="bg-pink-500 border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
+                        {products[item].color.includes("red") && (
+                          <button className="bg-red-500 border-2 border-black rounded-full w-6 h-6 focus:outline-none mx-1"></button>
                         )}
                       </div>
                     </div>

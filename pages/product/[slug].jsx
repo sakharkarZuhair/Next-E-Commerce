@@ -6,7 +6,7 @@ import Product from "../../models/Product";
 import mongoose from "mongoose";
 
 const Slug = ({ buyNow, addToCart, product, variants }) => {
-  console.log(product, variants);
+  // console.log(product, variants);
   const router = useRouter();
   const [pin, setPin] = useState();
   const [service, setService] = useState();
@@ -199,42 +199,53 @@ const Slug = ({ buyNow, addToCart, product, variants }) => {
                 ) : (
                   <div className="flex">
                     <span className="mr-3">Color</span>
+                    {Object.keys(variants).includes("black") &&
+                      Object.keys(variants["black"]).includes(size) && (
+                        <button
+                          onClick={() => {
+                            refreshVariant(size, "black");
+                          }}
+                          className={`border-2 ml-1 bg-black rounded-full w-6 h-6 focus:outline-none ${
+                            color === "black"
+                              ? "border-black"
+                              : "border-gray-300"
+                          }`}
+                        ></button>
+                      )}
                     {Object.keys(variants).includes("white") &&
                       Object.keys(variants["white"]).includes(size) && (
                         <button
                           onClick={() => {
                             refreshVariant(size, "white");
                           }}
-                          className={`border-2 ml-1 bg-white rounded-full w-6 h-6 focus:outline-none ${
+                          className={`border-2 ml-1 bg-white-500 rounded-full w-6 h-6 focus:outline-none ${
                             color === "white"
                               ? "border-black"
                               : "border-gray-300"
                           }`}
                         ></button>
                       )}
-                    {Object.keys(variants).includes("pink") &&
-                      Object.keys(variants["pink"]).includes(size) && (
+                    {Object.keys(variants).includes("blue") &&
+                      Object.keys(variants["blue"]).includes(size) && (
                         <button
                           onClick={() => {
-                            refreshVariant(size, "pink");
+                            refreshVariant(size, "blue");
                           }}
-                          className={`border-2 ml-1 bg-pink-500 rounded-full w-6 h-6 focus:outline-none ${
-                            color === "pink"
+                          className={`border-2 ml-1 bg-blue-900 rounded-full w-6 h-6 focus:outline-none ${
+                            color === "blue"
                               ? "border-black"
                               : "border-gray-300"
                           }`}
                         ></button>
                       )}
-                    {Object.keys(variants).includes("green") &&
-                      Object.keys(variants["green"]).includes(size) && (
+                    {Object.keys(variants).includes("red") &&
+                      Object.keys(variants["red"]).includes(size) && (
                         <button
                           onClick={() => {
-                            refreshVariant(size, "green");
+                            refreshVariant(size, "red");
                           }}
-                          className={`border-2 ml-1 bg-green-900 rounded-full w-6 h-6 focus:outline-none ${
-                            color === "green"
-                              ? "border-black"
-                              : "border-gray-300"
+                          className={`border-2 ml-1 bg-red-900 rounded-full w-6 h-6 focus:outline-none ${
+                            color === "red" ? "border-black" : "border-gray-300"
                           }`}
                         ></button>
                       )}
@@ -257,14 +268,17 @@ const Slug = ({ buyNow, addToCart, product, variants }) => {
                         }}
                         className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10"
                       >
-                        {Object.keys(variants[color]).includes("small") && (
-                          <option value={"small"}>Small</option>
+                        {Object.keys(variants[color]).includes("S") && (
+                          <option value={"S"}>Small</option>
                         )}
-                        {Object.keys(variants[color]).includes("medium") && (
-                          <option value={"medium"}>Medium</option>
+                        {Object.keys(variants[color]).includes("M") && (
+                          <option value={"M"}>Medium</option>
                         )}
-                        {Object.keys(variants[color]).includes("large") && (
-                          <option value={"large"}>Large</option>
+                        {Object.keys(variants[color]).includes("L") && (
+                          <option value={"L"}>Large</option>
+                        )}
+                        {Object.keys(variants[color]).includes("XL") && (
+                          <option value={"XL"}>XL</option>
                         )}
                       </select>
                       <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
