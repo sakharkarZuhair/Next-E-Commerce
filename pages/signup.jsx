@@ -13,10 +13,10 @@ const SignUp = () => {
     }
   }, []);
 
-  const [name, setName] = useState();
-  const [number, setNumber] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
     if (e.target.name == "name") {
@@ -34,7 +34,7 @@ const SignUp = () => {
     e.preventDefault();
     const data = { name, number, email, password };
     console.log(data);
-    let res = await fetch("http://localhost:3000/api/signup", {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

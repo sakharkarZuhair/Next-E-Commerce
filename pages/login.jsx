@@ -13,8 +13,8 @@ const Login = () => {
     }
   }, []);
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
     if (e.target.name == "email") {
@@ -28,7 +28,7 @@ const Login = () => {
     e.preventDefault();
     const data = { email, password };
     console.log(data);
-    let res = await fetch("http://localhost:3000/api/login", {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const Login = () => {
         progress: undefined,
       });
       setTimeout(() => {
-        router.push("/");
+        router.push(process.env.NEXT_PUBLIC_HOST);
       }, 2000);
     } else {
       toast.error("Please Enter Valid Details!", {
